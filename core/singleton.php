@@ -9,10 +9,10 @@ namespace easyServer\core;
 
 class singleton{
     static $models = [];
-    static public function getInstance(...$args){
+    static public function getInstance(){
         $name =  get_called_class();
         if( !isset( self::$models[$name] ) ){
-            self::$models[$name] = new $name(...$args);
+            self::$models[$name] = new $name();
         }
         return self::$models[$name];
     }
