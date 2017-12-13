@@ -11,16 +11,15 @@ namespace easyServer;
 class autoLoad{
     /* 路径映射 */
     public static $vendorMap = array(
-        'easyServer' => __DIR__ . DIRECTORY_SEPARATOR ,
+        'easyServer' => __DIR__ ,
     );
-    public static $curDir = __DIR__ . DIRECTORY_SEPARATOR;
+    public static $curDir = __DIR__ ;
     public static $allFile = array();
     /**
      * 自动加载器
      */
     public static function load($class)
     {
-        echo $class."\n";
         $file = self::findFile($class);
         if (file_exists($file)) {
             self::includeFile($file);
@@ -76,4 +75,3 @@ class autoLoad{
     }
 }
 spl_autoload_register('easyServer\autoLoad::load');
-//Load::$allFile = Load::read_all_dir(Load::$curDir);

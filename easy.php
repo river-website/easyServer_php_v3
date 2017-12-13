@@ -6,8 +6,7 @@
  * Time: 20:38
  */
 namespace easyServer;
-use easyServer\server\webServer;
-
+use easyServer\server\server;
 
 class easy{
     private function back(){
@@ -19,9 +18,11 @@ class easy{
     public function start($serverData){
         $this->back();
         array_map(function ($server,$data){
-            $ser = new webServer();
-            $ser->start($data);
+            $server = server::factoryMethod($server);
+            $ser = $server::getInstance();
+            $ser->init($data);
         },array_keys($serverData),array_values($serverData));
+        server::factoryMethod()->start();
         $this->monitorServer();
     }
     private function monitorServer(){

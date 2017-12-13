@@ -12,7 +12,10 @@ $server = array(
     'webServer'=>array(
         '0.0.0.0:80'=>array(
             'webSite'=>'/html/'
-        )
+        ),
+        '0.0.0.0:88'=>array(
+            'webSite'=>'/html/'
+        ),
     ),
 //    'webSocketServer'=>array(),
 );
