@@ -22,7 +22,7 @@ class webServer extends server
     {
         // TODO: Implement init() method.
         $this->protocol = protocol::factoryMethod("http");
-        $this->threadPool = new threadPool(100);
+//        $this->threadPool = new threadPool(100);
         $addrs = array_map(function($addr){
             return "tcp://$addr";
         },array_keys($data));
