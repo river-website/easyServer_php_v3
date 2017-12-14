@@ -7,10 +7,12 @@
  */
 namespace easyServer\server;
 use easyServer\protocol\protocol;
+use easyServer\core\threadPool;
 class webServer extends server
 {
     private $connectToWebPath = array();
     public $protocol = null;
+    private $threadPool = null;
     public function start($data = null)
     {
         // TODO: Implement start() method.
@@ -20,6 +22,7 @@ class webServer extends server
     {
         // TODO: Implement init() method.
         $this->protocol = protocol::factoryMethod("http");
+        $this->threadPool = new threadPool(100);
         $addrs = array_map(function($addr){
             return "tcp://$addr";
         },array_keys($data));
@@ -30,9 +33,14 @@ class webServer extends server
             $this->connectToWebPath[$fd] = $webPaths;
         },array_keys($data),array_values($data));
     }
+    public function doRequest($connect, $data){
+        var_dump($connect);
+        var_dump($data);
+        $connect->send("xxx");
+    }
     public function onMessage($connect, $data)
     {
         // TODO: Implement onMessage() method.
-        $connect->send("xxxx");
+//        $this->threadPool->addEvent(array($this,"doRequest"),array($connect,$data));
     }
 }

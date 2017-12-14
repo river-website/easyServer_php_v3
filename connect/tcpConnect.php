@@ -46,7 +46,7 @@ class tcpConnect extends connect
             if($this->onMessage) {
                 try{
                     call_user_func_array($this->onMessage, array($this, $buffer));
-                }catch (Exception $ex){
+                }catch (\Exception $ex){
                 }
             }
         }
